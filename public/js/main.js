@@ -5,6 +5,7 @@ const city_name = document.getElementById('city_name');
 
 const temp_real_val = document.getElementById('temp_real_val');
 const temp_status = document.getElementById('temp_status');
+const day= document.getElementById('day');
 
 const datahide = document.querySelector('.middle_layer');
 
@@ -13,12 +14,12 @@ const getInfo = async(event) =>{
     event.preventDefault();
     let cityVal = cityName.value; 
     if(cityVal === ""){
-        city_name.innerText = `Plz write the name before search`;
+        city_name.innerText = `Please write the name before search`;
         datahide.classList.add('data_hide');
 
     }else{
         try{
-            let url = `http://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&appid=b14425a6554d189a2d7dc18a8e7d7263`;
+            let url = `http://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&appid=8f77c337a57054b5aa69d0d521e08c97`;
             const response = await fetch(url);
             const data = await response.json();
            const arrData = [data];
@@ -27,6 +28,7 @@ const getInfo = async(event) =>{
            temp_real_val.innerText = arrData[0].main.temp;
 
             const tempMood = arrData[0].weather[0].main;
+        
 
             //condition to check sunny or cloudy
             if (tempMood == "Clear") {
